@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../routes/app_pages.dart';
+import '../../../core/common/safe_area_wrapper.dart'; // 👈 import your wrapper
+import '../../../routes/app_pages.dart';
 
 class Screen2 extends StatelessWidget {
   const Screen2({super.key});
@@ -9,45 +9,61 @@ class Screen2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(""),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Get.offNamed(Routes.screen3); // 👈 example navigation
-            },
-            child: const Text("Skip", style: TextStyle(color: Colors.black)),
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
+      body: SafeAreaWrapper(
+        scrollable: false,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Image.asset("assets/images/At-anytime.png"),
+            // 🔝 Skip text (replaces AppBar)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                GestureDetector(
+                  onTap: () => Get.toNamed(Routes.screen3),
+                  child: const Text(
+                    "Skip",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 20),
+
+            // 🖼️ Main Image
+            Image.asset("assets/images/At-anytime.png", fit: BoxFit.contain),
+
             const SizedBox(height: 30),
+
+            // 🧩 Title
             const Text(
               "At anytime",
-              style: TextStyle(fontSize: 24),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
               textAlign: TextAlign.center,
             ),
+
             const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: const Text(
+
+            // 📜 Description
+            const Padding(
+              padding: EdgeInsets.all(16),
+              child: Text(
                 "Sell houses easily with the help of Listenoryx and to make this line big I am writing more.",
-                style: TextStyle(
-                  color: Colors.grey
-                ),
+                style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w500),
                 textAlign: TextAlign.center,
               ),
             ),
+
             const Spacer(),
+
+            // ⏭️ Next Button Image
             GestureDetector(
-              onTap: () {
-                Get.offNamed(Routes.screen3); // or next onboarding
-              },
-              child: Image.asset("assets/images/Group-297.png"),
+              onTap: () => Get.offNamed(Routes.screen3),
+              child: Center(child: Image.asset("assets/images/Group-297.png")),
             ),
           ],
         ),

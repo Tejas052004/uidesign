@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
+import '../core/common/custom_button.dart';
 import '../core/theme/app_colors.dart';
 import '../routes/app_pages.dart';
 
@@ -25,7 +25,7 @@ class WelcomeScreen extends StatelessWidget {
                 "Welcome",
                 style: TextStyle(
                   fontSize: 24,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w500,
                   color: Colors.black87,
                 ),
                 textAlign: TextAlign.center,
@@ -35,7 +35,7 @@ class WelcomeScreen extends StatelessWidget {
 
               const Text(
                 "Have a better sharing experience",
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+                style: TextStyle(fontSize: 16, color: Colors.grey, fontWeight: FontWeight.w400),
                 textAlign: TextAlign.center,
               ),
 
@@ -44,39 +44,55 @@ class WelcomeScreen extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  ElevatedButton(
-                    style: OutlinedButton.styleFrom(
-                      backgroundColor: AppColors.primary,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      padding: EdgeInsets.symmetric(vertical: 15),
-                    ),
+                  // ElevatedButton(
+                  //   style: OutlinedButton.styleFrom(
+                  //     backgroundColor: AppColors.primary,
+                  //     shape: RoundedRectangleBorder(
+                  //       borderRadius: BorderRadius.circular(6),
+                  //     ),
+                  //     padding: EdgeInsets.symmetric(vertical: 15),
+                  //   ),
+                  //   onPressed: () {
+                  //     Get.offNamed(Routes.signupScreen);
+                  //   },
+                  //   child: Text(
+                  //     "Create an account",
+                  //     style: TextStyle(color: Colors.white),
+                  //   ),
+                  // ),
+                  CustomButton(
+                    text: "Create an account",
+                    color: AppColors.primary,
                     onPressed: () {
-                      Get.offNamed(Routes.signupScreen);
+                      Get.toNamed(Routes.signupScreen);
                     },
-                    child: Text(
-                      "Create an account",
-                      style: TextStyle(color: Colors.white),
-                    ),
                   ),
+
                   SizedBox(height: 15),
-                  OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(
-                        color: AppColors.primary,
-                        width: 1,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      padding: EdgeInsets.symmetric(vertical: 15)
-                    ),
-                    onPressed: () {},
-                    child: Text(
-                      "Log In",
-                      style: TextStyle(color: AppColors.primary),
-                    ),
+
+                  // OutlinedButton(
+                  //   style: OutlinedButton.styleFrom(
+                  //     side: const BorderSide(
+                  //       color: AppColors.primary,
+                  //       width: 1,
+                  //     ),
+                  //     shape: RoundedRectangleBorder(
+                  //       borderRadius: BorderRadius.circular(6),
+                  //     ),
+                  //     padding: EdgeInsets.symmetric(vertical: 15)
+                  //   ),
+                  //   onPressed: () {},
+                  //   child: Text(
+                  //     "Log In",
+                  //     style: TextStyle(color: AppColors.primary),
+                  //   ),
+                  // ),
+                  CustomButton(
+                    text: "Log In",
+                    // color: AppColors.primary,
+                    onPressed: () {
+                      Get.toNamed(Routes.signIn);
+                    },
                   ),
                 ],
               ),

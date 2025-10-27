@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../core/common/safe_area_wrapper.dart'; // 👈 import your wrapper
 import '../../../routes/app_pages.dart';
 
 class Screen1 extends StatelessWidget {
@@ -8,43 +9,64 @@ class Screen1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(""),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Get.offNamed(Routes.screen2);
-            },
-            child: const Text("Skip", style: TextStyle(color: Colors.black)),
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
+      body: SafeAreaWrapper(
+        scrollable: false,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Image.asset("assets/images/Anywhere you are.png"),
+            // 🔝 Skip text (replaces AppBar)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                GestureDetector(
+                  onTap: () => Get.offNamed(Routes.screen2),
+                  child: const Text(
+                    "Skip",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 20),
+
+            // 🖼️ Main Image
+            Image.asset(
+              "assets/images/Anywhere you are.png",
+              fit: BoxFit.contain,
+            ),
+
             const SizedBox(height: 30),
+
+            // 🧩 Title
             const Text(
               "Anywhere you are",
-              style: TextStyle(fontSize: 24),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
               textAlign: TextAlign.center,
             ),
+
             const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: const Text(
+
+            // 📜 Description
+            const Padding(
+              padding: EdgeInsets.all(16),
+              child: Text(
                 "Sell houses easily with the help of Listenoryx and to make this line big I am writing more.",
-                style: TextStyle(color: Colors.grey),
+                style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w500),
                 textAlign: TextAlign.center,
               ),
             ),
+
             const Spacer(),
+
+            // ⏭️ Next Button Image
             GestureDetector(
-              onTap: () {
-                Get.offNamed(Routes.screen2); // or next onboarding
-              },
-              child: Image.asset("assets/images/Group 296.png"),
+              onTap: () => Get.offNamed(Routes.screen2),
+              child: Center(child: Image.asset("assets/images/Group 296.png")),
             ),
           ],
         ),
