@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uidesign/core/common/common_text.dart';
 import '../core/common/back_button_widget.dart';
 import '../core/common/custom_button.dart';
 import '../core/common/safe_area_wrapper.dart';
@@ -19,19 +20,22 @@ class ForgetPassword extends StatelessWidget {
           children: [
             const Row(children: [BackButtonWidget()]),
 
-            const SizedBox(height: 30),
+            const SizedBox(height: 10),
 
-            const Text(
+            const CommonText(
               "Forgot Password",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
+              fontWeight: FontWeight.w500,
+              fontSize: 24,
               textAlign: TextAlign.center,
             ),
 
             const SizedBox(height: 10),
 
-            const Text(
+            const CommonText(
               "Select which contact details should we use to reset your password",
-              style: TextStyle(color: Colors.grey),
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: Colors.grey,
               textAlign: TextAlign.center,
             ),
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uidesign/core/common/common_text.dart';
+import 'package:uidesign/core/common/common_text_field.dart';
 import '../controllers/signup_controller.dart';
 import '../core/common/back_button_widget.dart';
 import '../core/common/custom_button.dart';
@@ -25,34 +27,19 @@ class SendVerification extends StatelessWidget {
               children: [BackButtonWidget()],
             ),
 
-            const SizedBox(height: 30),
+            const SizedBox(height: 10),
 
-            const Text(
+            const CommonText(
               "Verification email or phone number",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+              fontSize: 24,
+              fontWeight: FontWeight.w500,
               // textAlign: TextAlign.center,
             ),
 
             const SizedBox(height: 20),
 
             // 📩 Email or Phone Field
-            TextField(
-              decoration: InputDecoration(
-                hintText: "Email or Phone Number",
-                hintStyle: const TextStyle(color: Colors.grey),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Colors.grey),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Colors.grey),
-                ),
-              ),
-            ),
+            CommonTextField(hintText: "Email or phone number"),
 
             const Spacer(),
 

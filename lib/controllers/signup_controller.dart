@@ -1,14 +1,33 @@
 import 'package:get/get.dart';
 
 class SignUpController extends GetxController {
-  // Gender list
+  // 👨‍🦱 Gender list
   final List<String> genderList = ['Male', 'Female', 'Other'];
-
-  // Selected gender reactive variable
   final RxString selectedGender = ''.obs;
 
-// Optional: tamara form ma biji values add karvi hoy to ahiya kari sako
-// final nameController = TextEditingController();
-// final emailController = TextEditingController();
-// final phoneController = TextEditingController();
+  // 🏙 City list
+  final List<String> cityList = [
+    'Ahmedabad',
+    'Surat',
+    'Vadodara',
+    'Rajkot',
+    'Bhavnagar',
+    'Jamnagar',
+    'Gandhinagar',
+    'Junagadh',
+  ];
+  final RxString selectedCity = ''.obs;
+
+  // 📍 District list
+  final List<String> districtList = [
+    'Ahmedabad',
+    'Surat',
+    'Vadodara',
+    'Rajkot',
+    'Bhavnagar',
+    'Jamnagar',
+    'Gandhinagar',
+    'Junagadh',
+  ];
+  final RxString selectedDistrict = ''.obs;
 }

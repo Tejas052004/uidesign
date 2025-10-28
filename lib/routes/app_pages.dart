@@ -8,6 +8,7 @@ import 'package:uidesign/presentation/verify_otp.dart';
 import 'package:uidesign/presentation/signupScreen.dart';
 import 'package:uidesign/presentation/welcome_screen.dart';
 
+import '../presentation/home_screen.dart';
 import '../presentation/screen1.dart';
 import '../presentation/screen2.dart';
 import '../presentation/screen3.dart';
@@ -30,6 +31,7 @@ class Routes {
   static const forgetPassword = '/forgetPassword';
   static const phoneVerifyOtp = '/phoneVerifyOtp';
   static const setNewPassword = '/setNewPassword';
+  static const homeScreen = '/homeScreen';
 }
 
 class AppPages {
@@ -48,5 +50,6 @@ class AppPages {
     GetPage(name: Routes.forgetPassword, page: () => ForgetPassword()),
     GetPage(name: Routes.phoneVerifyOtp, page: () => PhoneVerifyOtp()),
     GetPage(name: Routes.setNewPassword, page: () => SetNewPassword()),
+    GetPage(name: Routes.homeScreen, page: () => HomeScreen()),
   ];
 }

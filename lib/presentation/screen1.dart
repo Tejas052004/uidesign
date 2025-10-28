@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/common/safe_area_wrapper.dart'; // 👈 import your wrapper
 import '../../../routes/app_pages.dart';
+import '../core/common/common_text.dart';
 
 class Screen1 extends StatelessWidget {
   const Screen1({super.key});
@@ -20,13 +21,10 @@ class Screen1 extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () => Get.offNamed(Routes.screen2),
-                  child: const Text(
+                  child: const CommonText(
                     "Skip",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
               ],
@@ -43,9 +41,10 @@ class Screen1 extends StatelessWidget {
             const SizedBox(height: 30),
 
             // 🧩 Title
-            const Text(
+            const CommonText(
               "Anywhere you are",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+              fontSize: 24,
+              fontWeight: FontWeight.w500,
               textAlign: TextAlign.center,
             ),
 
@@ -54,9 +53,10 @@ class Screen1 extends StatelessWidget {
             // 📜 Description
             const Padding(
               padding: EdgeInsets.all(16),
-              child: Text(
+              child: CommonText(
                 "Sell houses easily with the help of Listenoryx and to make this line big I am writing more.",
-                style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w500),
+                fontWeight: FontWeight.w500,
+                fontSize: 14,
                 textAlign: TextAlign.center,
               ),
             ),

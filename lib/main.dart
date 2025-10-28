@@ -13,15 +13,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'UI Design',
+      title: 'Clean Arch App',
       theme: ThemeData(
-        fontFamily: 'Poppins', // 👈 Set default font globally
-        textTheme: const TextTheme(
-          bodyMedium: TextStyle(fontFamily: 'Poppins'),
-        ),
+        fontFamily: 'Poppins'
       ),
-      initialRoute: Routes.splash,
-      getPages: AppPages.pages,
+      initialRoute: Routes.splash, // 👈 GetX route
+      getPages: AppPages.pages, // 👈 route list
     );
   }
 }

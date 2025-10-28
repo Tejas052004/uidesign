@@ -10,6 +10,7 @@ class CustomButton extends StatelessWidget {
   final double verticalPadding;
   final Color? textColor;
   final double fontSize;
+  final FontWeight fontWeight; // 👈 Added fontWeight
 
   const CustomButton({
     super.key,
@@ -20,6 +21,7 @@ class CustomButton extends StatelessWidget {
     this.verticalPadding = 15,
     this.textColor,
     this.fontSize = 16,
+    this.fontWeight = FontWeight.w500, // 👈 Default weight
   });
 
   @override
@@ -48,7 +50,11 @@ class CustomButton extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         text,
-        style: TextStyle(color: effectiveTextColor, fontSize: fontSize),
+        style: TextStyle(
+          color: effectiveTextColor,
+          fontSize: fontSize,
+          fontWeight: fontWeight, // 👈 Apply fontWeight here),
+        ),
       ),
     );
   }

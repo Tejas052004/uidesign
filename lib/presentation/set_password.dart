@@ -1,29 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../controllers/password_controller.dart';
 import '../core/common/back_button_widget.dart';
+import '../core/common/common_text.dart';
+import '../core/common/common_text_field.dart';
 import '../core/common/custom_button.dart';
 import '../core/common/safe_area_wrapper.dart';
 import '../core/theme/app_colors.dart';
 import '../routes/app_pages.dart';
 
-// 🔹 Controller for managing password visibility
-class PasswordController extends GetxController {
-  var isPasswordHidden = true.obs;
-  var isConfirmPasswordHidden = true.obs;
-
-  void togglePasswordVisibility() {
-    isPasswordHidden.value = !isPasswordHidden.value;
-  }
-
-  void toggleConfirmPasswordVisibility() {
-    isConfirmPasswordHidden.value = !isConfirmPasswordHidden.value;
-  }
-}
-
 class SetPassword extends StatelessWidget {
   SetPassword({super.key});
 
-  final PasswordController controller = Get.put(PasswordController());
+  final SetNewPasswordController controller = Get.put(
+    SetNewPasswordController(),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -34,52 +25,35 @@ class SetPassword extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Row(children: [BackButtonWidget()]),
-
-            const SizedBox(height: 30),
-
-            const Text(
-              "Set password",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
-              textAlign: TextAlign.center,
-            ),
-
             const SizedBox(height: 10),
-
-            const Text(
-              "Set your password",
-              style: TextStyle(color: Colors.grey),
+            const CommonText(
+              "Set password",
+              fontSize: 24,
+              fontWeight: FontWeight.w500,
               textAlign: TextAlign.center,
             ),
-
+            const SizedBox(height: 10),
+            const CommonText(
+              "Set your password",
+              fontWeight: FontWeight.w400,
+              fontSize: 16,
+              textAlign: TextAlign.center,
+            ),
             const SizedBox(height: 30),
 
             // 🔑 Password Field
             Obx(
-              () => TextField(
+              () => CommonTextField(
+                hintText: "Enter Your Password",
                 obscureText: controller.isPasswordHidden.value,
-                decoration: InputDecoration(
-                  hintText: "Enter Your Password",
-                  hintStyle: const TextStyle(color: Colors.grey),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      controller.isPasswordHidden.value
-                          ? Icons.visibility_off
-                          : Icons.visibility,
-                      color: Colors.grey,
-                    ),
-                    onPressed: controller.togglePasswordVisibility,
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    controller.isPasswordHidden.value
+                        ? Icons.visibility_off
+                        : Icons.visibility,
+                    color: Colors.grey,
                   ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: Colors.grey),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: Colors.grey),
-                  ),
+                  onPressed: controller.togglePasswordVisibility,
                 ),
               ),
             ),
@@ -88,50 +62,36 @@ class SetPassword extends StatelessWidget {
 
             // 🔁 Confirm Password Field
             Obx(
-              () => TextField(
+              () => CommonTextField(
+                hintText: "Confirm Password",
                 obscureText: controller.isConfirmPasswordHidden.value,
-                decoration: InputDecoration(
-                  hintText: "Confirm Password",
-                  hintStyle: const TextStyle(color: Colors.grey),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      controller.isConfirmPasswordHidden.value
-                          ? Icons.visibility_off
-                          : Icons.visibility,
-                      color: Colors.grey,
-                    ),
-                    onPressed: controller.toggleConfirmPasswordVisibility,
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    controller.isConfirmPasswordHidden.value
+                        ? Icons.visibility_off
+                        : Icons.visibility,
+                    color: Colors.grey,
                   ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: Colors.grey),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: Colors.grey),
-                  ),
+                  onPressed: controller.toggleConfirmPasswordVisibility,
                 ),
               ),
             ),
 
             const SizedBox(height: 5),
-
-            const Text(
+            const CommonText(
               "At least 1 number or a special character",
-              style: TextStyle(color: Colors.grey, fontSize: 13),
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              color: Colors.grey,
               textAlign: TextAlign.left,
             ),
 
-            const Spacer(), // 👇 keeps button at bottom
+            const Spacer(),
+
             CustomButton(
               text: "Register",
               color: AppColors.primary,
-              onPressed: () {
-                Get.toNamed(Routes.profilePage);
-              },
+              onPressed: () => Get.toNamed(Routes.profilePage),
             ),
 
             const SizedBox(height: 16),

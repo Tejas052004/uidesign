@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../core/common/common_text.dart';
 import '../core/common/custom_button.dart';
 import '../core/theme/app_colors.dart';
 import '../routes/app_pages.dart';
@@ -10,6 +11,9 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    print("🧠 Current Font: ${Theme.of(context).textTheme.bodyMedium?.fontFamily}");
+
     return Scaffold(
       backgroundColor: Colors.white, // background color
       body: SafeArea(
@@ -21,21 +25,19 @@ class WelcomeScreen extends StatelessWidget {
 
               const SizedBox(height: 30),
 
-              const Text(
+              const CommonText(
                 "Welcome",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black87,
-                ),
+               fontWeight: FontWeight.w500,
+                fontSize: 24,
                 textAlign: TextAlign.center,
               ),
 
               const SizedBox(height: 10),
 
-              const Text(
+              const CommonText(
                 "Have a better sharing experience",
-                style: TextStyle(fontSize: 16, color: Colors.grey, fontWeight: FontWeight.w400),
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
                 textAlign: TextAlign.center,
               ),
 

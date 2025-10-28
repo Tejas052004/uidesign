@@ -1,29 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uidesign/core/common/common_text.dart';
+import '../controllers/password_controller.dart';
 import '../core/common/back_button_widget.dart';
+import '../core/common/common_text_field.dart';
 import '../core/common/custom_button.dart';
 import '../core/common/safe_area_wrapper.dart';
 import '../core/theme/app_colors.dart';
 import '../routes/app_pages.dart';
 
-// 🔹 Controller for managing password visibility
-class SetNewPasswordController extends GetxController {
-  var isPasswordHidden = true.obs;
-  var isConfirmPasswordHidden = true.obs;
-
-  void togglePasswordVisibility() {
-    isPasswordHidden.value = !isPasswordHidden.value;
-  }
-
-  void toggleConfirmPasswordVisibility() {
-    isConfirmPasswordHidden.value = !isConfirmPasswordHidden.value;
-  }
-}
-
 class SetNewPassword extends StatelessWidget {
   SetNewPassword({super.key});
 
-  final SetNewPasswordController controller = Get.put(SetNewPasswordController());
+  final SetNewPasswordController controller = Get.put(
+    SetNewPasswordController(),
+  );
+
+  final TextEditingController newPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,46 +30,40 @@ class SetNewPassword extends StatelessWidget {
           children: [
             const Row(children: [BackButtonWidget()]),
             const SizedBox(height: 30),
-            const Text(
-              "Set New password",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
+
+            const CommonText(
+              "Set New Password",
+              fontWeight: FontWeight.w500,
+              fontSize: 24,
               textAlign: TextAlign.center,
             ),
+
             const SizedBox(height: 10),
-            const Text(
+
+            const CommonText(
               "Set your new password",
-              style: TextStyle(color: Colors.grey),
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: Colors.grey,
               textAlign: TextAlign.center,
             ),
+
             const SizedBox(height: 30),
 
-            // 🔑 Password Field
+            // 🔑 New Password Field
             Obx(
-                  () => TextField(
+              () => CommonTextField(
+                hintText: "Enter Your New Password",
+                controller: newPasswordController,
                 obscureText: controller.isPasswordHidden.value,
-                decoration: InputDecoration(
-                  hintText: "Enter Your New Password",
-                  hintStyle: const TextStyle(color: Colors.grey),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      controller.isPasswordHidden.value
-                          ? Icons.visibility_off
-                          : Icons.visibility,
-                      color: Colors.grey,
-                    ),
-                    onPressed: controller.togglePasswordVisibility,
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    controller.isPasswordHidden.value
+                        ? Icons.visibility_off
+                        : Icons.visibility,
+                    color: Colors.grey,
                   ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: Colors.grey),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: Colors.grey),
-                  ),
+                  onPressed: controller.togglePasswordVisibility,
                 ),
               ),
             ),
@@ -83,50 +72,96 @@ class SetNewPassword extends StatelessWidget {
 
             // 🔁 Confirm Password Field
             Obx(
-                  () => TextField(
+              () => CommonTextField(
+                hintText: "Confirm Password",
+                controller: confirmPasswordController,
                 obscureText: controller.isConfirmPasswordHidden.value,
-                decoration: InputDecoration(
-                  hintText: "Confirm Password",
-                  hintStyle: const TextStyle(color: Colors.grey),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      controller.isConfirmPasswordHidden.value
-                          ? Icons.visibility_off
-                          : Icons.visibility,
-                      color: Colors.grey,
-                    ),
-                    onPressed: controller.toggleConfirmPasswordVisibility,
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    controller.isConfirmPasswordHidden.value
+                        ? Icons.visibility_off
+                        : Icons.visibility,
+                    color: Colors.grey,
                   ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: Colors.grey),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: Colors.grey),
-                  ),
+                  onPressed: controller.toggleConfirmPasswordVisibility,
                 ),
               ),
             ),
 
             const SizedBox(height: 5),
-            const Text(
+            const CommonText(
               "At least 1 number or a special character",
-              style: TextStyle(color: Colors.grey, fontSize: 13),
+              color: Colors.grey,
+              fontWeight: FontWeight.w500,
+              fontSize: 14,
               textAlign: TextAlign.left,
             ),
 
             const Spacer(),
+
+            // ✅ Save Button with Dialog
             CustomButton(
               text: "Save",
               color: AppColors.primary,
               onPressed: () {
-                Get.toNamed(Routes.profilePage);
+                Get.toNamed(Routes.homeScreen);
+                Get.dialog(
+                  Dialog(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    insetPadding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                      vertical: 24,
+                    ),
+                    child: Stack(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const SizedBox(height: 20),
+                              Image.asset('assets/images/Group-6476.png'),
+                              const SizedBox(height: 20),
+                              const CommonText(
+                                "Congratulations",
+                                fontSize: 22,
+                                fontWeight: FontWeight.w500,
+                                textAlign: TextAlign.center,
+                              ),
+                              const SizedBox(height: 12),
+                              const CommonText(
+                                "Your account is ready to use. You will be redirected to the Home Page in a few seconds.",
+                                fontWeight: FontWeight.w500,
+                                fontSize: 12,
+                                color: Colors.grey,
+                                textAlign: TextAlign.center,
+                              ),
+                              const SizedBox(height: 20),
+                              Image.asset('assets/images/dialogBox_image.png'),
+                              const SizedBox(height: 10),
+                            ],
+                          ),
+                        ),
+                        Positioned(
+                          right: 0,
+                          top: 0,
+                          child: IconButton(
+                            icon: const Icon(Icons.close, color: Colors.grey),
+                            onPressed: () {
+                              Get.back();
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  barrierDismissible: false,
+                );
               },
             ),
+
             const SizedBox(height: 16),
           ],
         ),

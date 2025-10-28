@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
+import '../core/common/common_text.dart';
 import '../core/common/custom_button.dart';
 import '../core/common/safe_area_wrapper.dart';
 import '../core/common/back_button_widget.dart'; // 👈 import added
@@ -28,17 +29,19 @@ class VerifyOtp extends StatelessWidget {
             const SizedBox(height: 20),
 
             // 📱 Title
-            const Text(
+            const CommonText(
               "Phone verification",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
+              fontSize: 24,
+              fontWeight: FontWeight.w500,
               textAlign: TextAlign.center,
             ),
 
             const SizedBox(height: 10),
 
-            const Text(
+            const CommonText(
               "Enter your OTP code",
-              style: TextStyle(color: Colors.grey),
+              fontWeight: FontWeight.w400,
+              fontSize: 16,
               textAlign: TextAlign.center,
             ),
 
@@ -84,14 +87,18 @@ class VerifyOtp extends StatelessWidget {
               child: RichText(
                 textAlign: TextAlign.center,
                 text: const TextSpan(
-                  style: TextStyle(fontSize: 14, color: Colors.black),
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                  ),
                   children: [
                     TextSpan(text: "Didn’t receive code? "),
                     TextSpan(
                       text: "Resend again",
                       style: TextStyle(
                         color: AppColors.primary,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],

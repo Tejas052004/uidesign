@@ -30,7 +30,7 @@ class BackButtonWidget extends StatelessWidget {
           style: TextStyle(
             fontSize: fontSize,
             color: textColor,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w400,
           ),
         ),
 
@@ -42,7 +42,7 @@ class BackButtonWidget extends StatelessWidget {
             style: TextStyle(
               fontSize: fontSize,
               color: textColor.withOpacity(0.7),
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ],

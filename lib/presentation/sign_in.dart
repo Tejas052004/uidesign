@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/signup_controller.dart';
+import 'package:uidesign/core/common/common_text.dart';
+import 'package:uidesign/core/common/common_text_field.dart';
+import '../controllers/signin_controller.dart';
 import '../core/common/back_button_widget.dart';
 import '../core/common/custom_button.dart';
 import '../core/common/safe_area_wrapper.dart';
@@ -10,91 +12,75 @@ import '../routes/app_pages.dart';
 class SignIn extends StatelessWidget {
   SignIn({super.key});
 
-  // 👇 Controller init
-  final SignUpController controller = Get.put(SignUpController());
+  // Controllers
+  final SignInController controller = Get.put(SignInController());
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeAreaWrapper(
-        // backgroundColor: Colors.white,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // 🔙 Back Button (Reusable)
-            Row(
-              children: const [
-                BackButtonWidget(),
-              ],
-            ),
+            const Row(children: [BackButtonWidget()]),
 
-            const SizedBox(height: 30),
-            const Text(
+            const SizedBox(height: 10),
+            const CommonText(
               "Sign in",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
+              fontSize: 24,
+              fontWeight: FontWeight.w500,
             ),
             const SizedBox(height: 20),
 
-            // 👤 Name Field
-            TextField(
-              decoration: InputDecoration(
-                hintText: "Email or Phone Number",
-                hintStyle: const TextStyle(color: Colors.grey),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Colors.grey),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Colors.grey),
-                ),
-              ),
+            // 📧 Email or Phone Field
+            CommonTextField(
+              hintText: "Email or Phone Number",
+              controller: emailController,
             ),
+
             const SizedBox(height: 16),
 
-            // 📧 Email Field
-            TextField(
-              decoration: InputDecoration(
+            // 🔑 Password Field (with GetX visibility toggle)
+            Obx(
+              () => CommonTextField(
                 hintText: "Enter Your Password",
-                hintStyle: const TextStyle(color: Colors.grey),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Colors.grey),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Colors.grey),
+                controller: passwordController,
+                obscureText: controller.isPasswordHidden.value,
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    controller.isPasswordHidden.value
+                        ? Icons.visibility_off
+                        : Icons.visibility,
+                    color: Colors.grey,
+                  ),
+                  onPressed: controller.togglePasswordVisibility,
                 ),
               ),
             ),
 
             Align(
               alignment: Alignment.centerRight,
-              child: TextButton(
+                child: TextButton(
                 onPressed: () {
-                  // Get.toNamed(Routes.forgotPassword);
+                  Get.toNamed(Routes.forgetPassword);
                 },
-                child: const Text(
+                child: const CommonText(
                   "Forgot Password?",
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  fontWeight: FontWeight.w500,
+                  color: Colors.red,
+                  fontSize: 14,
                 ),
               ),
             ),
 
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
-            // 🔘 Sign Up Button
+            // 🔘 Sign In Button
             CustomButton(
-              text: "Sign up",
+              text: "Sign in",
               color: AppColors.primary,
               onPressed: () {
                 Get.toNamed(Routes.sendVerification);
@@ -104,27 +90,42 @@ class SignIn extends StatelessWidget {
             const SizedBox(height: 20),
             Center(child: Image.asset("assets/images/Group-8.png")),
             const SizedBox(height: 30),
-            Center(
-              child: Image.asset(
-                "assets/images/Social-Sign-up.png",
-                fit: BoxFit.contain,
-              ),
+
+            // 🌐 Social Login Icons
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                for (var icon in [
+                  "assets/images/Gmail.png",
+                  "assets/images/Gmail.png",
+                  "assets/images/Gmail.png",
+                ])
+                  IconButton(
+                    onPressed: () {},
+                    icon: Image.asset(icon, fit: BoxFit.contain),
+                  ),
+              ],
             ),
-            const SizedBox(height: 40),
+
+            const SizedBox(height: 30),
 
             // 📝 Already have account?
             Center(
               child: RichText(
                 textAlign: TextAlign.center,
                 text: const TextSpan(
-                  style: TextStyle(fontSize: 14, color: Colors.black),
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                  ),
                   children: [
                     TextSpan(text: "Don’t have an account? "),
                     TextSpan(
                       text: "Sign Up",
                       style: TextStyle(
                         color: AppColors.primary,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],

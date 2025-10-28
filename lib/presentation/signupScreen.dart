@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uidesign/core/common/common_text_field.dart';
 import '../controllers/signup_controller.dart';
 import '../core/common/back_button_widget.dart';
+import '../core/common/common_text.dart';
 import '../core/common/custom_button.dart';
 import '../core/common/safe_area_wrapper.dart';
 import '../core/theme/app_colors.dart';
@@ -9,9 +11,6 @@ import '../routes/app_pages.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});
-
-  // final RxString selectedGender = ''.obs;
-  // final List<String> genderList = ['Male', 'Female', 'Other'];
 
   // 👇 Controller init
   final SignUpController controller = Get.put(SignUpController());
@@ -25,136 +24,50 @@ class SignUpScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // 🔙 Back Button (Reusable)
-            Row(
-              children: const [
-                BackButtonWidget(),
-              ],
-            ),
+            Row(children: const [BackButtonWidget()]),
 
-            const SizedBox(height: 30),
-            const Text(
+            const SizedBox(height: 10),
+            const CommonText(
               "Sign Up",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
+              fontWeight: FontWeight.w500,
+              fontSize: 24,
             ),
             const SizedBox(height: 20),
 
             // 👤 Name Field
-            TextField(
-              decoration: InputDecoration(
-                hintText: "Name",
-                hintStyle: const TextStyle(color: Colors.grey),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Colors.grey),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Colors.grey),
-                ),
-              ),
-            ),
+            CommonTextField(hintText: "Name"),
+
             const SizedBox(height: 16),
 
             // 📧 Email Field
-            TextField(
+            CommonTextField(
+              hintText: "Email",
               keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                hintText: "Email",
-                hintStyle: const TextStyle(color: Colors.grey),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Colors.grey),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Colors.grey),
-                ),
-              ),
             ),
+
             const SizedBox(height: 16),
 
             // 📱 Mobile Number Field
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Row(
-                children: [
-                  Row(
-                    children: const [
-                      Text("🇮🇳", style: TextStyle(fontSize: 20)),
-                      SizedBox(width: 3),
-                      Icon(Icons.keyboard_arrow_down, size: 18),
-                    ],
-                  ),
-                  const SizedBox(width: 8),
-                  const Text(
-                    "+91",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                  ),
-                  const SizedBox(width: 10),
-                  Container(width: 1, height: 25, color: Colors.grey),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: TextField(
-                      keyboardType: TextInputType.phone,
-                      decoration: const InputDecoration(
-                        hintText: "Your Mobile Number",
-                        hintStyle: TextStyle(color: Colors.grey),
-                        border: InputBorder.none,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            CommonTextField(
+              hintText: "Your Mobile Number",
+              isPhoneField: true, // 👈 Enable phone field mode
+              onCountryCodeChanged: (code) {
+                print("Selected country code: $code");
+              },
             ),
+
             const SizedBox(height: 16),
 
-            // 👇 Gender Dropdown
-            Obx(
-              () => Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton<String>(
-                    value: controller.selectedGender.value.isEmpty
-                        ? null
-                        : controller.selectedGender.value,
-                    isExpanded: true,
-                    hint: const Text(
-                      "Gender",
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    icon: const Icon(
-                      Icons.keyboard_arrow_down,
-                      color: Colors.grey,
-                    ),
-                    dropdownColor: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    items: controller.genderList.map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                    onChanged: (newValue) {
-                      controller.selectedGender.value = newValue!;
-                    },
-                  ),
-                ),
-              ),
-            ),
+            // 👩 Gender Dropdown (Using GetX)
+            Obx(() => CommonTextField(
+              hintText: "Gender",
+              isDropdownField: true,
+              dropdownItems: controller.genderList,
+              selectedValue: controller.selectedGender.value,
+              onDropdownChanged: (value) {
+                controller.selectedGender.value = value ?? '';
+              },
+            )),
 
             const SizedBox(height: 20),
 
@@ -168,12 +81,19 @@ class SignUpScreen extends StatelessWidget {
                     text: const TextSpan(
                       style: TextStyle(fontSize: 14, color: Colors.grey),
                       children: [
-                        TextSpan(text: "By signing up, you agree to the "),
+                        TextSpan(
+                          text: "By signing up, you agree to the ",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12,
+                          ),
+                        ),
                         TextSpan(
                           text: "Terms of Service",
                           style: TextStyle(
                             color: AppColors.primary,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12,
                           ),
                         ),
                         TextSpan(text: " and "),
@@ -181,7 +101,8 @@ class SignUpScreen extends StatelessWidget {
                           text: "Privacy Policy",
                           style: TextStyle(
                             color: AppColors.primary,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12,
                           ),
                         ),
                         TextSpan(text: "."),
@@ -206,28 +127,55 @@ class SignUpScreen extends StatelessWidget {
             const SizedBox(height: 20),
             Center(child: Image.asset("assets/images/Group-8.png")),
             const SizedBox(height: 30),
-            Center(
-              child: Image.asset(
-                "assets/images/Social-Sign-up.png",
-                fit: BoxFit.contain,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: Image.asset(
+                      "assets/images/Gmail.png",
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+                Center(
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: Image.asset(
+                      "assets/images/Gmail.png",
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+                Center(
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: Image.asset(
+                      "assets/images/Gmail.png",
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 30),
 
             // 📝 Already have account?
             Center(
               child: RichText(
                 textAlign: TextAlign.center,
                 text: const TextSpan(
-                  style: TextStyle(fontSize: 14, color: Colors.black),
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                  ),
                   children: [
                     TextSpan(text: "Already have an account? "),
                     TextSpan(
                       text: "Sign In",
-                      style: TextStyle(
-                        color: AppColors.primary,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: TextStyle(color: AppColors.primary),
                     ),
                   ],
                 ),
