@@ -5,7 +5,7 @@ class BackButtonWidget extends StatelessWidget {
   final Color iconColor;
   final Color textColor;
   final double fontSize;
-  final String? title; // 👈 optional text after "Back"
+  final String? title;
 
   const BackButtonWidget({
     super.key,
@@ -34,7 +34,6 @@ class BackButtonWidget extends StatelessWidget {
           ),
         ),
 
-        // 👇 Only show if optionText is provided
         if (title != null) ...[
           const SizedBox(width: 5),
           Text(

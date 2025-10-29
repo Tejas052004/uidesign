@@ -16,10 +16,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       // ✅ Add this line
-      bottomNavigationBar: const CustomBottomNav(), // 👈 Custom bottom navigation call here
+      bottomNavigationBar: const CustomBottomNav(),
 
+      // 👈 Custom bottom navigation call here
       body: SafeAreaWrapper(
         padding: EdgeInsets.zero,
         scrollable: false,
@@ -46,11 +46,11 @@ class HomeScreen extends StatelessWidget {
             }),
 
             Positioned(
-                top: 20,
-                left: 10,
-                right: 10,
-                child: const HomePageCard()),
-
+              top: 20,
+              left: 10,
+              right: 10,
+              child: const HomePageCard(),
+            ),
           ],
         ),
       ),

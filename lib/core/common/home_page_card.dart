@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/homepage_controller.dart';
+import '../../routes/app_pages.dart';
 import '../theme/app_colors.dart';
 
 class HomePageCard extends StatelessWidget {
@@ -21,28 +22,29 @@ class HomePageCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           // 🔍 Search Bar
-          Container(
-            decoration: BoxDecoration(
-              color: AppColors.lightYellow,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: AppColors.primary),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+          GestureDetector(
+            onTap: () {
+              print("object");
+              Get.toNamed(Routes.searchScreen);
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppColors.lightYellow,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: AppColors.primary),
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
               child: Row(
-                children: [
-                  const Icon(Icons.search, color: Colors.grey),
-                  const SizedBox(width: 8),
-                  const Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        hintText: "Where would you go?",
-                        hintStyle: TextStyle(color: Colors.grey),
-                        border: InputBorder.none,
-                      ),
+                children: const [
+                  Icon(Icons.search, color: Colors.grey),
+                  SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      "Where would you go?",
+                      style: TextStyle(color: Colors.grey, fontSize: 16),
                     ),
                   ),
-                  const Icon(Icons.favorite_border, color: Colors.grey),
+                  Icon(Icons.favorite_border, color: Colors.grey),
                 ],
               ),
             ),
@@ -56,13 +58,16 @@ class HomePageCard extends StatelessWidget {
             return Container(
               decoration: BoxDecoration(
                 border: Border.all(color: AppColors.primary),
-                borderRadius: BorderRadius.circular(10.7)
+                borderRadius: BorderRadius.circular(10.7),
               ),
               child: Row(
                 children: [
                   Expanded(
                     child: GestureDetector(
-                      onTap: controller.selectTransport,
+                      onTap: () {
+                        controller.selectTransport();
+                        Get.toNamed(Routes.transportScreen);
+                      },
                       child: Container(
                         height: 45,
                         decoration: BoxDecoration(
