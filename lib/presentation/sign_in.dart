@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uidesign/core/common/common_text.dart';
@@ -95,15 +96,21 @@ class SignIn extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                for (var icon in [
-                  "assets/images/Gmail.png",
-                  "assets/images/Gmail.png",
-                  "assets/images/Gmail.png",
-                ])
-                  IconButton(
+                Center(
+                  child: IconButton(
                     onPressed: () {},
-                    icon: Image.asset(icon, fit: BoxFit.contain),
+                    icon: Icon(Icons.email_outlined),
                   ),
+                ),
+                Center(
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.facebook_outlined),
+                  ),
+                ),
+                Center(
+                  child: IconButton(onPressed: () {}, icon: Icon(Icons.apple)),
+                ),
               ],
             ),
 
@@ -113,20 +120,26 @@ class SignIn extends StatelessWidget {
             Center(
               child: RichText(
                 textAlign: TextAlign.center,
-                text: const TextSpan(
-                  style: TextStyle(
+                text: TextSpan(
+                  style: const TextStyle(
                     fontSize: 16,
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
                   ),
                   children: [
-                    TextSpan(text: "Don’t have an account? "),
+                    const TextSpan(text: "Don’t have an account? "),
                     TextSpan(
                       text: "Sign Up",
                       style: TextStyle(
                         color: AppColors.primary,
                         fontWeight: FontWeight.w500,
                       ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Get.toNamed(
+                            Routes.signupScreen,
+                          ); // 👈 Navigate using GetX route
+                        },
                     ),
                   ],
                 ),

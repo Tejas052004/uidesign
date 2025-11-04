@@ -12,69 +12,94 @@ import '../../routes/app_pages.dart';
 class NotificationScreen extends StatelessWidget {
   NotificationScreen({super.key});
 
-  final SignUpController controller = Get.put(SignUpController());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeAreaWrapper(
-        child: Column(
-          children: [
-            const BackButtonWidget(title: "Notification", fontSize: 18),
-            SizedBox(height: 10),
-            Row(children: [CommonText("Today", fontWeight: FontWeight.w500)]),
-            SizedBox(height: 10),
-            _buildNotificationCard(
-              icon: Icons.payment,
-              title: "Payment Successfully!",
-              message:
-                  "Lorem ipsum dolor sit amet consectetur. Ultricies tincidunt eleifend vitae.",
-            ),
-            _buildNotificationCard(
-              icon: Icons.local_offer_outlined,
-              title: "30% Special Discount!",
-              message:
-                  "Lorem ipsum dolor sit amet consectetur. Ultricies tincidunt eleifend vitae.",
-            ),
-            Row(
-              children: [CommonText("Yesterday", fontWeight: FontWeight.w500)],
-            ),
-            _buildNotificationCard(
-              icon: Icons.payment,
-              title: "Payment Successfully!",
-              message:
-                  "Lorem ipsum dolor sit amet consectetur. Ultricies tincidunt eleifend vitae.",
-            ),
-            _buildNotificationCard(
-              icon: Icons.credit_card,
-              title: "Credit Card added!",
-              message:
-                  "Lorem ipsum dolor sit amet consectetur. Ultricies tincidunt eleifend vitae.",
-            ),
-            _buildNotificationCard(
-              icon: Icons.account_balance_wallet,
-              title: "Added Money wallet Successfully!",
-              message:
-                  "Lorem ipsum dolor sit amet consectetur. Ultricies tincidunt eleifend vitae.",
-            ),
-            _buildNotificationCard(
-              icon: Icons.local_offer_outlined,
-              title: "5% Special Discount!",
-              message:
-                  "Lorem ipsum dolor sit amet consectetur. Ultricies tincidunt eleifend vitae.",
-            ),
-            Row(
-              children: [
-                CommonText("May, 27 2023", fontWeight: FontWeight.w500),
-              ],
-            ),
-            _buildNotificationCard(
-              icon: Icons.payment,
-              title: "Payment Successfully!",
-              message:
-                  "Lorem ipsum dolor sit amet consectetur. Ultricies tincidunt eleifend vitae.",
-            ),
-          ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // 🔹 Fixed AppBar at top
+              const BackButtonWidget(title: "Notification", fontSize: 18),
+
+              const SizedBox(height: 10),
+
+              // 🔹 Scrollable content below AppBar
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          CommonText("Today", fontWeight: FontWeight.w500),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      _buildNotificationCard(
+                        icon: Icons.payment,
+                        title: "Payment Successfully!",
+                        message:
+                            "Lorem ipsum dolor sit amet consectetur. Ultricies tincidunt eleifend vitae.",
+                      ),
+                      _buildNotificationCard(
+                        icon: Icons.local_offer_outlined,
+                        title: "30% Special Discount!",
+                        message:
+                            "Lorem ipsum dolor sit amet consectetur. Ultricies tincidunt eleifend vitae.",
+                      ),
+                      Row(
+                        children: [
+                          CommonText("Yesterday", fontWeight: FontWeight.w500),
+                        ],
+                      ),
+                      _buildNotificationCard(
+                        icon: Icons.payment,
+                        title: "Payment Successfully!",
+                        message:
+                            "Lorem ipsum dolor sit amet consectetur. Ultricies tincidunt eleifend vitae.",
+                      ),
+                      _buildNotificationCard(
+                        icon: Icons.credit_card,
+                        title: "Credit Card added!",
+                        message:
+                            "Lorem ipsum dolor sit amet consectetur. Ultricies tincidunt eleifend vitae.",
+                      ),
+                      _buildNotificationCard(
+                        icon: Icons.account_balance_wallet,
+                        title: "Added Money wallet Successfully!",
+                        message:
+                            "Lorem ipsum dolor sit amet consectetur. Ultricies tincidunt eleifend vitae.",
+                      ),
+                      _buildNotificationCard(
+                        icon: Icons.local_offer_outlined,
+                        title: "5% Special Discount!",
+                        message:
+                            "Lorem ipsum dolor sit amet consectetur. Ultricies tincidunt eleifend vitae.",
+                      ),
+                      Row(
+                        children: [
+                          CommonText(
+                            "May, 27 2023",
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ],
+                      ),
+                      _buildNotificationCard(
+                        icon: Icons.payment,
+                        title: "Payment Successfully!",
+                        message:
+                            "Lorem ipsum dolor sit amet consectetur. Ultricies tincidunt eleifend vitae.",
+                      ),
+                      const SizedBox(height: 20),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -104,7 +129,7 @@ class NotificationScreen extends StatelessWidget {
               color: Colors.black,
               shape: BoxShape.circle,
             ),
-            child: Icon(icon, color: Colors.amberAccent, size: 22),
+            child: Icon(icon, color: AppColors.primary, size: 22),
           ),
           const SizedBox(width: 12),
 

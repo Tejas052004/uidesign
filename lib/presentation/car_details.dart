@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:uidesign/core/common/back_button_widget.dart';
 import 'package:uidesign/core/common/common_text.dart';
 import 'package:uidesign/core/common/custom_button.dart';
@@ -40,7 +39,7 @@ class _CarDetailsState extends State<CarDetails> {
     },
   ];
 
-  // 🔹 Car Features List (as shown in your image)
+  // 🔹 Car Features List
   final List<Map<String, String>> features = [
     {'title': 'Model', 'value': 'GT5000'},
     {'title': 'Capacity', 'value': '760hp'},
@@ -52,144 +51,151 @@ class _CarDetailsState extends State<CarDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeAreaWrapper(
-        child: SingleChildScrollView(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // 🔹 Fixed AppBar (not scrollable)
               const BackButtonWidget(),
-              const SizedBox(height: 10),
 
-              // 🔹 Car Info
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CommonText(
-                    "Mustang Shelby GT",
-                    fontWeight: FontWeight.w600,
-                    fontSize: 24,
-                  ),
-                  CommonText(
-                    "4.9 (531 reviews)",
-                    color: Colors.grey,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  const SizedBox(height: 20),
-
-                  // 🔹 Car Image
-                  Center(
-                    child: Image.asset(
-                      "assets/images/Car.png",
-                      height: 200,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-
-                  const SizedBox(height: 20),
-                  CommonText(
-                    "Specifications",
-                    fontWeight: FontWeight.w500,
-                    fontSize: 18,
-                  ),
-                  const SizedBox(height: 10),
-
-                  // 🔹 Specifications Grid
-                  GridView.builder(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: specifications.length,
-                    gridDelegate:
-                    const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                    ),
-                    itemBuilder: (context, index) {
-                      final spec = specifications[index];
-                      return _buildSpecificationCard(
-                        imagePath: spec['image']!,
-                        title: spec['title']!,
-                        subtitle: spec['subtitle']!,
-                      );
-                    },
-                  ),
-
-                  const SizedBox(height: 20),
-
-                  // 🔹 Car Features Title
-                  CommonText(
-                    "Car features",
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  const SizedBox(height: 10),
-
-                  // 🔹 Car Features Grid
-                  GridView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: features.length,
-                    gridDelegate:
-                    const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 1,
-                      mainAxisSpacing: 10,
-                      childAspectRatio: 6,
-                    ),
-                    itemBuilder: (context, index) {
-                      final feature = features[index];
-                      return Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 12),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFFFFDF3),
-                          border: Border.all(color: AppColors.primary, width: 1.2),
-                          borderRadius: BorderRadius.circular(10),
+              // 🔹 Scrollable content below
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CommonText(
+                          "Mustang Shelby GT",
+                          fontWeight: FontWeight.w600,
+                          fontSize: 24,
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        CommonText(
+                          "4.9 (531 reviews)",
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        const SizedBox(height: 20),
+
+                        // 🔹 Car Image
+                        Center(
+                          child: Image.asset(
+                            "assets/images/Car.png",
+                            height: 200,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+
+                        const SizedBox(height: 20),
+                        CommonText(
+                          "Specifications",
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18,
+                        ),
+                        const SizedBox(height: 10),
+
+                        // 🔹 Specifications Grid
+                        GridView.builder(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: specifications.length,
+                          gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 4,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                          ),
+                          itemBuilder: (context, index) {
+                            final spec = specifications[index];
+                            return _buildSpecificationCard(
+                              imagePath: spec['image']!,
+                              title: spec['title']!,
+                              subtitle: spec['subtitle']!,
+                            );
+                          },
+                        ),
+
+                        const SizedBox(height: 20),
+                        CommonText(
+                          "Car features",
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        const SizedBox(height: 10),
+
+                        // 🔹 Car Features Grid
+                        GridView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: features.length,
+                          gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 1,
+                            mainAxisSpacing: 10,
+                            childAspectRatio: 6,
+                          ),
+                          itemBuilder: (context, index) {
+                            final feature = features[index];
+                            return Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 12),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFFFFDF3),
+                                border:
+                                Border.all(color: AppColors.primary, width: 1.2),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  CommonText(
+                                    feature['title']!,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  CommonText(
+                                    feature['value']!,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black87,
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+
+                        const SizedBox(height: 30),
+
+                        Row(
                           children: [
-                            CommonText(
-                              feature['title']!,
-                              fontWeight: FontWeight.w500,
+                            // 🕒 Book later
+                            Expanded(
+                              child: CustomButton(
+                                onPressed: () {},
+                                text: 'Book later',
+                              ),
                             ),
-                            CommonText(
-                              feature['value']!,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black87,
+                            const SizedBox(width: 10),
+
+                            // 🚀 Ride now
+                            Expanded(
+                              child: CustomButton(
+                                onPressed: () {
+                                  Get.toNamed(Routes.requestRent);
+                                },
+                                text: 'Ride Now',
+                                color: AppColors.primary,
+                              ),
                             ),
                           ],
                         ),
-                      );
-                    },
+                        const SizedBox(height: 20),
+                      ],
+                    ),
                   ),
-
-                  const SizedBox(height: 30),
-
-                  Row(
-                    children: [
-                      // 🕒 Book later
-                      Expanded(
-                        child: CustomButton(
-                          onPressed: () {},
-                          text: 'Book later',
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-
-                      // 🚀 Ride now
-                      Expanded(
-                        child: CustomButton(
-                          onPressed: () {
-                            Get.toNamed(Routes.requestRent);
-                          },
-                          text: 'Ride Now',
-                          color: AppColors.primary,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+                ),
               ),
             ],
           ),

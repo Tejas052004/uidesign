@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:uidesign/core/common/back_button_widget.dart';
 import 'package:uidesign/core/common/common_text.dart';
+import 'package:uidesign/core/common/custom_dialog.dart';
 import 'package:uidesign/core/common/safe_area_wrapper.dart';
 
 import '../core/common/custom_button.dart';
@@ -319,59 +320,10 @@ class AllPaymentMethod extends StatelessWidget {
                       text: "Confirm Ride",
                       onPressed: () {
                         Get.dialog(
-                          Dialog(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            insetPadding: const EdgeInsets.symmetric(
-                              horizontal: 30,
-                              vertical: 24,
-                            ),
-                            child: Stack(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(20),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      const SizedBox(height: 20),
-                                      Image.asset(
-                                        'assets/images/Group-6476.png',
-                                      ),
-                                      const SizedBox(height: 20),
-                                      const CommonText(
-                                        "Thank you",
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w500,
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      const SizedBox(height: 12),
-                                      const CommonText(
-                                        "Your booking has been placed sent to Md. Sharif Ahmed",
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 12,
-                                        color: Colors.grey,
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      const SizedBox(height: 20),
-                                    ],
-                                  ),
-                                ),
-                                Positioned(
-                                  right: 0,
-                                  top: 0,
-                                  child: IconButton(
-                                    icon: const Icon(
-                                      Icons.close,
-                                      color: Colors.grey,
-                                    ),
-                                    onPressed: () {
-                                      Get.back(); // Close dialog manually
-                                    },
-                                  ),
-                                ),
-                              ],
-                            ),
+                          const CustomDialog(
+                            title: "Thank you",
+                            message: "Your booking has been placed sent to Md. Sharif Ahmed",
+                            imagePath: 'assets/images/Group-6476.png',
                           ),
                           barrierDismissible: false,
                         );
@@ -380,7 +332,7 @@ class AllPaymentMethod extends StatelessWidget {
                         Future.delayed(const Duration(seconds: 2), () {
                           Get.back(); // Close dialog
                           Get.toNamed(
-                            Routes.homeScreen,
+                            Routes.confirmRide,
                           ); // Replace with your actual route, e.g. HomeScreen
                         });
                       },

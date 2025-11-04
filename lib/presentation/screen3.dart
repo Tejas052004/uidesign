@@ -16,31 +16,29 @@ class Screen3 extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // 🔝 Skip text (replaces AppBar)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                GestureDetector(
-                  onTap: () => Get.offNamed(Routes.welcomeScreen),
-                  child: const CommonText(
-                    "Skip",
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.end,
+            //   children: [
+            //     GestureDetector(
+            //       onTap: () => Get.offNamed(Routes.welcomeScreen),
+            //       child: const CommonText(
+            //         "Skip",
+            //         fontSize: 16,
+            //         fontWeight: FontWeight.w400,
+            //       ),
+            //     ),
+            //   ],
+            // ),
 
             const SizedBox(height: 20),
 
-            // 🖼️ Main Image
             Image.asset(
-              "assets/images/Anywhere you are.png",
+              "assets/images/screen1_image.png",
               fit: BoxFit.contain,
             ),
 
             const SizedBox(height: 30),
 
-            // 🧩 Title
             const CommonText(
               "Book your car",
               fontSize: 24,
@@ -50,7 +48,6 @@ class Screen3 extends StatelessWidget {
 
             const SizedBox(height: 10),
 
-            // 📜 Description
             const Padding(
               padding: EdgeInsets.all(16),
               child: CommonText(

@@ -20,7 +20,7 @@ class Screen1 extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 GestureDetector(
-                  onTap: () => Get.offNamed(Routes.screen2),
+                  onTap: () => Get.offNamed(Routes.welcomeScreen),
                   child: const CommonText(
                     "Skip",
                     fontSize: 16,
@@ -34,7 +34,7 @@ class Screen1 extends StatelessWidget {
 
             // 🖼️ Main Image
             Image.asset(
-              "assets/images/Anywhere you are.png",
+              "assets/images/screen1_image.png",
               fit: BoxFit.contain,
             ),
 

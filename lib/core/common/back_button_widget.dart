@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'common_text.dart';
 
 class BackButtonWidget extends StatelessWidget {
   final Color iconColor;
@@ -17,34 +18,44 @@ class BackButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Stack(
+      alignment: Alignment.center,
       children: [
-        IconButton(
-          icon: Icon(Icons.arrow_back_ios, size: 18, color: iconColor),
-          onPressed: () {
-            Get.back();
-          },
-        ),
-        Text(
-          "Back",
-          style: TextStyle(
-            fontSize: fontSize,
-            color: textColor,
-            fontWeight: FontWeight.w400,
+        // ✅ Center Title (if available)
+        if (title != null)
+          CommonText(
+            title!,
+            textAlign: TextAlign.center,
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
           ),
-        ),
 
-        if (title != null) ...[
-          const SizedBox(width: 5),
-          Text(
-            "${title!}",
-            style: TextStyle(
-              fontSize: fontSize,
-              color: textColor.withOpacity(0.7),
-              fontWeight: FontWeight.w500,
+        // ✅ Back button on left
+        Align(
+          alignment: Alignment.centerLeft,
+          child: GestureDetector(
+            onTap: () => Get.back(),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(
+                  Icons.arrow_back_ios,
+                  size: 18,
+                  color: Colors.black,
+                ),
+                const SizedBox(width: 2), // 👈 very small gap (adjust if needed)
+                const Text(
+                  "Back",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
             ),
           ),
-        ],
+        ),
       ],
     );
   }

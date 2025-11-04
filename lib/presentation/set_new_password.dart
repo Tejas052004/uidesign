@@ -5,6 +5,7 @@ import '../controllers/password_controller.dart';
 import '../core/common/back_button_widget.dart';
 import '../core/common/common_text_field.dart';
 import '../core/common/custom_button.dart';
+import '../core/common/custom_dialog.dart';
 import '../core/common/safe_area_wrapper.dart';
 import '../core/theme/app_colors.dart';
 import '../routes/app_pages.dart';
@@ -29,7 +30,7 @@ class SetNewPassword extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Row(children: [BackButtonWidget()]),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
 
             const CommonText(
               "Set New Password",
@@ -104,65 +105,19 @@ class SetNewPassword extends StatelessWidget {
               text: "Save",
               color: AppColors.primary,
               onPressed: () {
-                Get.toNamed(Routes.homeScreen);
+                Get.offNamed(Routes.mainScreen);
                 Get.dialog(
-                  Dialog(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    insetPadding: const EdgeInsets.symmetric(
-                      horizontal: 30,
-                      vertical: 24,
-                    ),
-                    child: Stack(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(20),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const SizedBox(height: 20),
-                              Image.asset('assets/images/Group-6476.png'),
-                              const SizedBox(height: 20),
-                              const CommonText(
-                                "Congratulations",
-                                fontSize: 22,
-                                fontWeight: FontWeight.w500,
-                                textAlign: TextAlign.center,
-                              ),
-                              const SizedBox(height: 12),
-                              const CommonText(
-                                "Your account is ready to use. You will be redirected to the Home Page in a few seconds.",
-                                fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                                color: Colors.grey,
-                                textAlign: TextAlign.center,
-                              ),
-                              const SizedBox(height: 20),
-                              Image.asset('assets/images/dialogBox_image.png'),
-                              const SizedBox(height: 10),
-                            ],
-                          ),
-                        ),
-                        Positioned(
-                          right: 0,
-                          top: 0,
-                          child: IconButton(
-                            icon: const Icon(Icons.close, color: Colors.grey),
-                            onPressed: () {
-                              Get.back();
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
+                  CustomDialog(
+                    title: "Congratulations",
+                    message:
+                        "Your account is ready to use. You will be redirected to the Home Page in a few seconds.",
+                    imagePath: 'assets/images/Group-6476.png',
                   ),
                   barrierDismissible: false,
                 );
               },
             ),
-
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
           ],
         ),
       ),

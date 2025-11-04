@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'controllers/bottom_nav_controller.dart';
 import 'routes/app_pages.dart';
 
 void main() {
   runApp(const MyApp());
+
+  // ✅ અહીં register કરો
+  Get.put(BottomNavController());
 }
 
 class MyApp extends StatelessWidget {

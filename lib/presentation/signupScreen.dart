@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uidesign/core/common/common_text_field.dart';
@@ -59,29 +60,31 @@ class SignUpScreen extends StatelessWidget {
             const SizedBox(height: 16),
 
             // 👩 Gender Dropdown (Using GetX)
-            Obx(() => CommonTextField(
-              hintText: "Gender",
-              isDropdownField: true,
-              dropdownItems: controller.genderList,
-              selectedValue: controller.selectedGender.value,
-              onDropdownChanged: (value) {
-                controller.selectedGender.value = value ?? '';
-              },
-            )),
+            Obx(
+              () => CommonTextField(
+                hintText: "Gender",
+                isDropdownField: true,
+                dropdownItems: controller.genderList,
+                selectedValue: controller.selectedGender.value,
+                onDropdownChanged: (value) {
+                  controller.selectedGender.value = value ?? '';
+                },
+              ),
+            ),
 
             const SizedBox(height: 20),
 
             // 🖼️ Terms Text Section
             Row(
               children: [
-                Image.asset("assets/images/_check-circle.png"),
+                Image.asset("assets/images/terms_condition.png"),
                 const SizedBox(width: 10),
                 Expanded(
                   child: RichText(
-                    text: const TextSpan(
-                      style: TextStyle(fontSize: 14, color: Colors.grey),
+                    text: TextSpan(
+                      style: const TextStyle(fontSize: 14, color: Colors.grey),
                       children: [
-                        TextSpan(
+                        const TextSpan(
                           text: "By signing up, you agree to the ",
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
@@ -96,7 +99,7 @@ class SignUpScreen extends StatelessWidget {
                             fontSize: 12,
                           ),
                         ),
-                        TextSpan(text: " and "),
+                        const TextSpan(text: " and "),
                         TextSpan(
                           text: "Privacy Policy",
                           style: TextStyle(
@@ -105,7 +108,7 @@ class SignUpScreen extends StatelessWidget {
                             fontSize: 12,
                           ),
                         ),
-                        TextSpan(text: "."),
+                        const TextSpan(text: "."),
                       ],
                     ),
                   ),
@@ -133,29 +136,17 @@ class SignUpScreen extends StatelessWidget {
                 Center(
                   child: IconButton(
                     onPressed: () {},
-                    icon: Image.asset(
-                      "assets/images/Gmail.png",
-                      fit: BoxFit.contain,
-                    ),
+                    icon: Icon(Icons.email_outlined),
                   ),
                 ),
                 Center(
                   child: IconButton(
                     onPressed: () {},
-                    icon: Image.asset(
-                      "assets/images/Gmail.png",
-                      fit: BoxFit.contain,
-                    ),
+                    icon: Icon(Icons.facebook_outlined),
                   ),
                 ),
                 Center(
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: Image.asset(
-                      "assets/images/Gmail.png",
-                      fit: BoxFit.contain,
-                    ),
-                  ),
+                  child: IconButton(onPressed: () {}, icon: Icon(Icons.apple)),
                 ),
               ],
             ),
@@ -165,17 +156,23 @@ class SignUpScreen extends StatelessWidget {
             Center(
               child: RichText(
                 textAlign: TextAlign.center,
-                text: const TextSpan(
-                  style: TextStyle(
+                text: TextSpan(
+                  style: const TextStyle(
                     fontSize: 16,
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
                   ),
                   children: [
-                    TextSpan(text: "Already have an account? "),
+                    const TextSpan(text: "Already have an account? "),
                     TextSpan(
                       text: "Sign In",
                       style: TextStyle(color: AppColors.primary),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Get.toNamed(
+                            Routes.signIn,
+                          ); // 👈 Navigate using GetX route
+                        },
                     ),
                   ],
                 ),

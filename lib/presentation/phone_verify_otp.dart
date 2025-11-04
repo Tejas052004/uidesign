@@ -87,14 +87,14 @@ class PhoneVerifyOtp extends StatelessWidget {
             Center(
               child: RichText(
                 textAlign: TextAlign.center,
-                text: const TextSpan(
-                  style: TextStyle(
+                text: TextSpan(
+                  style: const TextStyle(
                     fontSize: 16,
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
                   ),
                   children: [
-                    TextSpan(text: "Didn’t receive code? "),
+                    const TextSpan(text: "Didn’t receive code? "),
                     TextSpan(
                       text: "Resend again",
                       style: TextStyle(

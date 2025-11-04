@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:uidesign/core/common/custom_button.dart';
+import 'package:uidesign/routes/app_pages.dart';
 import '../theme/app_colors.dart';
 
 class TransPortCard extends StatelessWidget {
@@ -129,7 +132,9 @@ class TransPortCard extends StatelessWidget {
                 // 🕒 Book later
                 Expanded(
                   child: CustomButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.back();
+                    },
                     text: 'Book later',
                   ),
                 ),
@@ -138,7 +143,9 @@ class TransPortCard extends StatelessWidget {
                 // 🚀 Ride now
                 Expanded(
                   child: CustomButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.toNamed(Routes.requestRent);
+                    },
                     text: 'Ride Now',
                     color: AppColors.primary,
                   ),

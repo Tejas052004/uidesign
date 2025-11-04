@@ -20,7 +20,7 @@ class Screen2 extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 GestureDetector(
-                  onTap: () => Get.toNamed(Routes.screen3),
+                  onTap: () => Get.offNamed(Routes.welcomeScreen),
                   child: const CommonText(
                     "Skip",
                     fontSize: 16,

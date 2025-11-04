@@ -1,8 +1,11 @@
 import 'dart:ui';
 
+import '../../app/extensions/color.dart';
+
 class AppColors {
-  static const Color secondary = Color(0xFFFEC400);
-  static const Color primary = Color(0xFFFEDAE10);
-  static const Color lightYellow = Color(0xFFFFFBE7);
-  static const Color searchScreenSearchBar = Color(0xFFFFF1B1);
+  static Color secondary = HexColor("FEC400");
+  static Color lightYellow = HexColor("FFFBE7");
+  static Color searchScreenSearchBar = HexColor("FFF1B1");
+  static Color menuIconBgColor = HexColor("FFE773");
+  static Color primary = HexColor("FEC400");
 }

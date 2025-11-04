@@ -4,11 +4,19 @@ import '../../controllers/bottom_nav_controller.dart';
 import '../theme/app_colors.dart';
 
 class CustomBottomNav extends StatelessWidget {
-  const CustomBottomNav({super.key});
+  final Function(int) onTap;
+  final int currentIndex;
+
+  const CustomBottomNav({
+    super.key,
+    required this.onTap,
+    required this.currentIndex,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final BottomNavController controller = Get.put(BottomNavController());
+
+    final BottomNavController controller = Get.find<BottomNavController>();
 
     return Container(
       decoration: BoxDecoration(
@@ -48,13 +56,7 @@ class CustomBottomNav extends StatelessWidget {
               selected,
               controller,
             ),
-            _buildNavItem(
-              Icons.menu,
-              "Menu",
-              4,
-              selected,
-              controller,
-            ),
+            _buildNavItem(Icons.menu, "Menu", 4, selected, controller),
           ],
         );
       }),
@@ -70,7 +72,10 @@ class CustomBottomNav extends StatelessWidget {
   ) {
     bool isSelected = selected == index;
     return GestureDetector(
-      onTap: () => controller.changeIndex(index),
+      onTap: () {
+        controller.changeIndex(index);
+        onTap(index);
+      },
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
