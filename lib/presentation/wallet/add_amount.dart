@@ -34,7 +34,7 @@ class AddAmount extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       Get.dialog(
-                        CustomDialog(
+                          CustomDialog(
                           dropdownItems: controller.genderList,
                           selectedValue: controller.selectedGender.value,
                           onDropdownChanged: (value) {

@@ -11,7 +11,7 @@ import '../../routes/app_pages.dart';
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
 
-  final SignUpController controller = Get.put(SignUpController());
+  final SignUpController controller = Get.find<SignUpController>();
 
   @override
   Widget build(BuildContext context) {

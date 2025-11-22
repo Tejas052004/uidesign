@@ -29,9 +29,9 @@ class CustomDialog extends StatelessWidget {
 
   const CustomDialog({
     super.key,
-     this.title,
-     this.message,
-     this.imagePath,
+    this.title,
+    this.message,
+    this.imagePath,
     this.amount,
     this.buttonText,
     this.onPressed,
@@ -57,32 +57,38 @@ class CustomDialog extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 50),
 
-                  // 🖼 Image
-                  Image.asset(imagePath!, width: 150, height: 150),
-                  const SizedBox(height: 20),
+                  // 🖼 Image (Safe)
+                  if (imagePath != null)
+                    Image.asset(imagePath!, width: 150, height: 150),
 
-                  // 🏷 Title
-                  CommonText(
-                    title!,
-                    fontSize: 22,
-                    fontWeight: FontWeight.w500,
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 12),
+                  if (imagePath != null) const SizedBox(height: 20),
 
-                  // 💬 Message
-                  CommonText(
-                    message!,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 12,
-                    color: Colors.grey,
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 20),
+                  // 🏷 Title (FIXED: Added null check)
+                  if (title != null) ...[
+                    CommonText(
+                      title!,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w500,
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 12),
+                  ],
 
-                  // 💰 Optional Amount
+                  // 💬 Message (FIXED: Added null check)
+                  if (message != null) ...[
+                    CommonText(
+                      message!,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 12,
+                      color: Colors.grey,
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 20),
+                  ],
+
+                  // 💰 Optional Amount (Safe)
                   if (amount != null) ...[
                     CommonText(
                       "Amount",
@@ -101,7 +107,7 @@ class CustomDialog extends StatelessWidget {
                     const SizedBox(height: 10),
                   ],
 
-                  // 🔽 Optional Dropdown
+                  // 🔽 Optional Dropdown (Safe)
                   if (dropdownItems != null &&
                       selectedValue != null &&
                       onDropdownChanged != null) ...[
@@ -115,13 +121,13 @@ class CustomDialog extends StatelessWidget {
                     const SizedBox(height: 20),
                   ],
 
-                  // 🧾 Optional Text Field
+                  // 🧾 Optional Text Field (Safe)
                   if (secondHintText != null) ...[
                     CommonTextField(hintText: secondHintText!),
                     const SizedBox(height: 20),
                   ],
 
-                  // 🔘 Optional Button
+                  // 🔘 Optional Button (Safe)
                   if (buttonText != null && onPressed != null)
                     Row(
                       children: [
@@ -138,7 +144,6 @@ class CustomDialog extends StatelessWidget {
               ),
             ),
           ),
-
           // ❌ Close Button
           Positioned(
             right: 0,

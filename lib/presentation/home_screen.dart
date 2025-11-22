@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:uidesign/controllers/homepage_controller.dart';
 import 'package:uidesign/core/common/home_page_card.dart';
 import 'package:uidesign/core/theme/app_colors.dart';
 import 'package:uidesign/presentation/Menu/side_menu.dart';
@@ -25,12 +26,12 @@ class HomeScreen extends StatelessWidget {
       //   child: const SideMenu(),
       // ),
 
-
       // bottomNavigationBar: CustomBottomNav(onTap: (index) {  }, currentIndex: null,),
 
       body: SafeAreaWrapper(
         padding: EdgeInsets.zero,
         scrollable: false,
+        // map code
         child: Stack(
           children: [
             // ✅ Google Map
@@ -64,26 +65,4 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-
-  // Widget _buildIcon(IconData icon, {required VoidCallback onTap}) {
-  //   return InkWell(
-  //     onTap: onTap,
-  //     borderRadius: BorderRadius.circular(12),
-  //     child: Container(
-  //       padding: const EdgeInsets.all(10),
-  //       decoration: BoxDecoration(
-  //         color: AppColors.lightYellow,
-  //         borderRadius: BorderRadius.circular(12),
-  //         boxShadow: [
-  //           BoxShadow(
-  //             color: Colors.black12,
-  //             blurRadius: 4,
-  //             offset: const Offset(0, 2),
-  //           ),
-  //         ],
-  //       ),
-  //       child: Icon(icon, color: Colors.black87, size: 22),
-  //     ),
-  //   );
-  // }
 }
