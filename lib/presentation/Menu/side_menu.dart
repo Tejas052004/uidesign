@@ -12,20 +12,13 @@ class SideMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
+    return Scaffold(
       backgroundColor: Colors.white,
-      width: MediaQuery.of(context).size.width * 0.75,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(16),
-          bottomLeft: Radius.circular(16),
-        ),
-      ),
-      child: SafeAreaWrapper(
+      body: SafeAreaWrapper(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // BackButtonWidget(),
+            const BackButtonWidget(title: "Menu"),
             const SizedBox(height: 10),
 
             // 👤 Profile Section
