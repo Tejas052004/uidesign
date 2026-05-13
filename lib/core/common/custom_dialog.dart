@@ -150,7 +150,7 @@ class CustomDialog extends StatelessWidget {
             top: 0,
             child: IconButton(
               icon: const Icon(Icons.close, color: Colors.grey),
-              onPressed: () => Get.back(),
+              onPressed: () => Navigator.of(context).pop(),
             ),
           ),
         ],

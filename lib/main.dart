@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'controllers/bottom_nav_controller.dart';
 import 'routes/app_pages.dart';
 
 void main() {
   runApp(const MyApp());
-
-  // ✅ અહીં register કરો
-  Get.put(BottomNavController());
 }
 
 class MyApp extends StatelessWidget {
@@ -19,10 +15,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Clean Arch App',
       theme: ThemeData(
-        fontFamily: 'Poppins'
+        fontFamily: 'Poppins',
+        useMaterial3: true,
       ),
-      initialRoute: Routes.splash, // 👈 GetX route
-      getPages: AppPages.pages, // 👈 route list
+      initialRoute: Routes.splash,
+      getPages: AppPages.pages,
+      // We rely on GetMaterialApp's internal navigator key
     );
   }
 }

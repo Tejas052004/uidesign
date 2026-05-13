@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uidesign/controllers/web_view_controller.dart';
 import 'package:uidesign/core/common/common_text.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:uidesign/controllers/about_us_controller.dart';
 import 'package:uidesign/core/common/back_button_widget.dart';
 import 'package:uidesign/core/common/safe_area_wrapper.dart';
 
@@ -11,7 +11,8 @@ class PrivacyPolicy extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(AboutUsController());
+    const url = "https://dsinfoway.com/privacy-policy"; // Replace with real URL
+    final controller = Get.put(CustomWebViewController(url), tag: url);
 
     return Scaffold(
       body: SafeAreaWrapper(
@@ -21,11 +22,12 @@ class PrivacyPolicy extends StatelessWidget {
           children: [
             BackButtonWidget(title: "Privacy Policy"),
             const SizedBox(height: 10),
-            CommonText(
+            const CommonText(
               "Privacy Policy for Ride share",
               fontSize: 18,
               fontWeight: FontWeight.w500,
             ),
+            const SizedBox(height: 10),
             Expanded(
               child: Stack(
                 children: [

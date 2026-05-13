@@ -10,7 +10,7 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SearchController controller = Get.put(SearchController());
+    final SearchController controller = Get.find<SearchController>();
 
     return Scaffold(
       body: SafeAreaWrapper(

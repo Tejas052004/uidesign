@@ -10,14 +10,12 @@ import '../core/theme/app_colors.dart';
 import '../routes/app_pages.dart';
 
 class SetPassword extends StatelessWidget {
-  SetPassword({super.key});
-
-  final SetNewPasswordController controller = Get.put(
-    SetNewPasswordController(),
-  );
+  const SetPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final SetNewPasswordController controller = Get.find<SetNewPasswordController>();
+
     return Scaffold(
       body: SafeAreaWrapper(
         scrollable: false,

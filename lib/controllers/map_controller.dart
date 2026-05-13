@@ -16,33 +16,44 @@ class MapController extends GetxController {
   }
 
   Future<void> getCurrentLocation() async {
-    Location location = Location();
+    try {
+      Location location = Location();
 
-    bool serviceEnabled = await location.serviceEnabled();
-    if (!serviceEnabled) {
-      serviceEnabled = await location.requestService();
-      if (!serviceEnabled) return;
+      bool serviceEnabled = await location.serviceEnabled();
+      if (!serviceEnabled) {
+        serviceEnabled = await location.requestService();
+        if (!serviceEnabled) {
+          isMapReady.value = true; // Still ready, just default location
+          return;
+        }
+      }
+
+      PermissionStatus permissionGranted = await location.hasPermission();
+      if (permissionGranted == PermissionStatus.denied) {
+        permissionGranted = await location.requestPermission();
+        if (permissionGranted != PermissionStatus.granted) {
+          isMapReady.value = true;
+          return;
+        }
+      }
+
+      final locationData = await location.getLocation();
+      final latLng = LatLng(locationData.latitude ?? 0, locationData.longitude ?? 0);
+      currentPosition.value = latLng;
+
+      markers.add(
+        Marker(
+          markerId: const MarkerId("current"),
+          position: latLng,
+          infoWindow: const InfoWindow(title: "You are here"),
+        ),
+      );
+
+      isMapReady.value = true;
+    } catch (e) {
+      print("Error getting location: $e");
+      isMapReady.value = true; // Ensure map shows even if location fails
     }
-
-    PermissionStatus permissionGranted = await location.hasPermission();
-    if (permissionGranted == PermissionStatus.denied) {
-      permissionGranted = await location.requestPermission();
-      if (permissionGranted != PermissionStatus.granted) return;
-    }
-
-    final locationData = await location.getLocation();
-    final latLng = LatLng(locationData.latitude ?? 0, locationData.longitude ?? 0);
-    currentPosition.value = latLng;
-
-    markers.add(
-      Marker(
-        markerId: const MarkerId("current"),
-        position: latLng,
-        infoWindow: const InfoWindow(title: "You are here"),
-      ),
-    );
-
-    isMapReady.value = true;
   }
 
   void onMapCreated(GoogleMapController controller) {

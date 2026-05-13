@@ -11,13 +11,11 @@ import '../core/theme/app_colors.dart';
 import '../routes/app_pages.dart';
 
 class SignUpScreen extends StatelessWidget {
-  SignUpScreen({super.key});
-
-  // 👇 Controller init
-  final SignUpController controller = Get.put(SignUpController());
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final SignUpController controller = Get.find<SignUpController>();
     return Scaffold(
       body: SafeAreaWrapper(
         // backgroundColor: Colors.white,
@@ -36,7 +34,7 @@ class SignUpScreen extends StatelessWidget {
             const SizedBox(height: 20),
 
             // 👤 Name Field
-            CommonTextField(hintText: "Name"),
+            CommonTextField(hintText: "Name", controller: controller.nameController),
 
             const SizedBox(height: 16),
 
@@ -44,6 +42,7 @@ class SignUpScreen extends StatelessWidget {
             CommonTextField(
               hintText: "Email",
               keyboardType: TextInputType.emailAddress,
+              controller: controller.emailController,
             ),
 
             const SizedBox(height: 16),
@@ -52,6 +51,7 @@ class SignUpScreen extends StatelessWidget {
             CommonTextField(
               hintText: "Your Mobile Number",
               isPhoneField: true, // 👈 Enable phone field mode
+              controller: controller.phoneController,
               onCountryCodeChanged: (code) {
                 print("Selected country code: $code");
               },

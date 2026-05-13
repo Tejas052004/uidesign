@@ -14,7 +14,7 @@ class HistoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final HomePageController controller = Get.put(HomePageController());
+    final HomePageController controller = Get.find<HomePageController>();
 
     return Scaffold(
       body: SafeArea(

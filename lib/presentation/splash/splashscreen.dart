@@ -1,26 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/theme/app_colors.dart';
-import '../../../routes/app_pages.dart';
+import '../../controllers/splash_controller.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends GetView<SplashController> {
   const SplashScreen({super.key});
-
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    _goNext();
-  }
-
-  void _goNext() async {
-    await Future.delayed(const Duration(seconds: 2));
-    Get.offNamed(Routes.screen1); // 👈 replaces Navigator.pushReplacementNamed
-  }
 
   @override
   Widget build(BuildContext context) {

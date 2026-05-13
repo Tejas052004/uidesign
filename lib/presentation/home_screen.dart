@@ -14,7 +14,7 @@ import '../core/common/custom_bottom_nav.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
-  final MapController controller = Get.put(MapController());
+  final MapController controller = Get.find<MapController>();
 
   @override
   Widget build(BuildContext context) {

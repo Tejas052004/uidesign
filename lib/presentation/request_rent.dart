@@ -209,10 +209,11 @@ class RequestRent extends StatelessWidget {
 
                     // 🔹 Auto-close after 2 seconds and navigate to HomeScreen
                     Future.delayed(const Duration(seconds: 2), () {
-                      Get.back(); // Close dialog
-                      Get.toNamed(
-                        Routes.confirmRide,
-                      ); // Replace with your actual route, e.g. HomeScreen
+                      // Safety check: only go back if a dialog is actually open
+                      if (Get.isDialogOpen ?? false) {
+                        Get.back();
+                      }
+                      Get.toNamed(Routes.confirmRide);
                     });
                   },
                   color: AppColors.primary,

@@ -9,7 +9,7 @@ class HomePageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final HomePageController controller = Get.put(HomePageController());
+    final HomePageController controller = Get.find<HomePageController>();
 
     return Container(
       decoration: BoxDecoration(
@@ -24,7 +24,6 @@ class HomePageCard extends StatelessWidget {
           // 🔍 Search Bar
           GestureDetector(
             onTap: () {
-              print("object");
               Get.toNamed(Routes.searchScreen);
             },
             child: Container(

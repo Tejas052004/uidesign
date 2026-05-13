@@ -34,7 +34,7 @@ class ProfilePage extends StatelessWidget {
                     radius: 60,
                     backgroundColor: Colors.grey.shade200,
                     backgroundImage: const AssetImage(
-                      "assets/images/profile_pic.png",
+                      "assets/images/emoji.png",
                     ),
                   ),
                   Container(

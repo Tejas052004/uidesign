@@ -1,4 +1,8 @@
 import 'package:get/get.dart';
+import 'package:uidesign/bindings/search_binding.dart';
+import 'package:uidesign/bindings/auth_binding.dart';
+import 'package:uidesign/bindings/home_binding.dart';
+import 'package:uidesign/bindings/splash_binding.dart';
 import 'package:uidesign/presentation/Menu/side_menu.dart';
 import 'package:uidesign/presentation/MenuItemList/AboutUs/about_us_screen.dart';
 import 'package:uidesign/presentation/MenuItemList/Referral/referralScreen.dart';
@@ -88,27 +92,30 @@ class Routes {
   static const contactUs = '/contactUs';
   static const deleteAccount = '/deleteAccount';
   static const helpSupport = '/helpSupport';
-
 }
 
 class AppPages {
   static final pages = [
-    GetPage(name: Routes.splash, page: () => const SplashScreen()),
+    GetPage(
+      name: Routes.splash,
+      page: () => const SplashScreen(),
+      binding: SplashBinding(),
+    ),
     GetPage(name: Routes.screen1, page: () => Screen1()),
     GetPage(name: Routes.screen2, page: () => Screen2()),
     GetPage(name: Routes.screen3, page: () => Screen3()),
     GetPage(name: Routes.welcomeScreen, page: () => WelcomeScreen()),
-    GetPage(name: Routes.signupScreen, page: () => SignUpScreen()),
-    GetPage(name: Routes.verifyOtp, page: () => VerifyOtp()),
-    GetPage(name: Routes.setPassword, page: () => SetPassword()),
-    GetPage(name: Routes.profilePage, page: () => ProfilePage()),
-    GetPage(name: Routes.signIn, page: () => SignIn()),
-    GetPage(name: Routes.sendVerification, page: () => SendVerification()),
-    GetPage(name: Routes.forgetPassword, page: () => ForgetPassword()),
-    GetPage(name: Routes.phoneVerifyOtp, page: () => PhoneVerifyOtp()),
-    GetPage(name: Routes.setNewPassword, page: () => SetNewPassword()),
+    GetPage(name: Routes.signupScreen, page: () => SignUpScreen(), binding: AuthBinding()),
+    GetPage(name: Routes.verifyOtp, page: () => VerifyOtp(), binding: AuthBinding()),
+    GetPage(name: Routes.setPassword, page: () => SetPassword(), binding: AuthBinding()),
+    GetPage(name: Routes.profilePage, page: () => ProfilePage(), binding: AuthBinding()),
+    GetPage(name: Routes.signIn, page: () => SignIn(), binding: AuthBinding()),
+    GetPage(name: Routes.sendVerification, page: () => SendVerification(), binding: AuthBinding()),
+    GetPage(name: Routes.forgetPassword, page: () => ForgetPassword(), binding: AuthBinding()),
+    GetPage(name: Routes.phoneVerifyOtp, page: () => PhoneVerifyOtp(), binding: AuthBinding()),
+    GetPage(name: Routes.setNewPassword, page: () => SetNewPassword(), binding: AuthBinding()),
     GetPage(name: Routes.homeScreen, page: () => HomeScreen()),
-    GetPage(name: Routes.searchScreen, page: () => SearchScreen()),
+    GetPage(name: Routes.searchScreen, page: () => SearchScreen(), binding: SearchBinding()),
     GetPage(name: Routes.notificationScreen, page: () => NotificationScreen()),
     GetPage(name: Routes.transportScreen, page: () => TransportScreen()),
     GetPage(name: Routes.availableCars, page: () => AvailableCars()),
@@ -123,7 +130,11 @@ class AppPages {
     GetPage(name: Routes.addAmount, page: () => AddAmount()),
     GetPage(name: Routes.offerScreen, page: () => OfferScreen()),
     GetPage(name: Routes.sideMenu, page: () => SideMenu()),
-    GetPage(name: Routes.mainScreen, page: () => MainScreen()),
+    GetPage(
+      name: Routes.mainScreen,
+      page: () => MainScreen(),
+      binding: HomeBinding(),
+    ),
     GetPage(name: Routes.historyScreen, page: () => HistoryScreen()),
     GetPage(name: Routes.upcomingScreen, page: () => UpcomingScreen()),
     GetPage(name: Routes.complainScreen, page: () => ComplainScreen()),

@@ -5,17 +5,14 @@ import '../theme/app_colors.dart';
 
 class CustomBottomNav extends StatelessWidget {
   final Function(int) onTap;
-  final int currentIndex;
 
   const CustomBottomNav({
     super.key,
     required this.onTap,
-    required this.currentIndex,
   });
 
   @override
   Widget build(BuildContext context) {
-
     final BottomNavController controller = Get.find<BottomNavController>();
 
     return Container(
@@ -25,11 +22,11 @@ class CustomBottomNav extends StatelessWidget {
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
         ),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Colors.black12,
             blurRadius: 6,
-            offset: const Offset(0, -2),
+            offset: Offset(0, -2),
           ),
         ],
       ),
@@ -40,23 +37,11 @@ class CustomBottomNav extends StatelessWidget {
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _buildNavItem(Icons.home, "Home", 0, selected, controller),
-            _buildNavItem(
-              Icons.favorite_border,
-              "Favourite",
-              1,
-              selected,
-              controller,
-            ),
-            _buildNavItem(Icons.wallet, "Wallet", 2, selected, controller),
-            _buildNavItem(
-              Icons.local_offer_outlined,
-              "Offer",
-              3,
-              selected,
-              controller,
-            ),
-            _buildNavItem(Icons.menu, "Menu", 4, selected, controller),
+            _buildNavItem(Icons.home, "Home", 0, selected),
+            _buildNavItem(Icons.favorite_border, "Favourite", 1, selected),
+            _buildNavItem(Icons.wallet, "Wallet", 2, selected),
+            _buildNavItem(Icons.local_offer_outlined, "Offer", 3, selected),
+            _buildNavItem(Icons.menu, "Menu", 4, selected),
           ],
         );
       }),
@@ -68,14 +53,10 @@ class CustomBottomNav extends StatelessWidget {
     String label,
     int index,
     int selected,
-    BottomNavController controller,
   ) {
     bool isSelected = selected == index;
     return GestureDetector(
-      onTap: () {
-        controller.changeIndex(index);
-        onTap(index);
-      },
+      onTap: () => onTap(index),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

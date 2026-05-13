@@ -56,7 +56,7 @@ class SettingScreen extends StatelessWidget {
                         break;
 
                       default:
-                        Get.snackbar("Tapped", settings[index]);
+                        Get.rawSnackbar(message: "Tapped: ${settings[index]}");
                     }
                   },
 

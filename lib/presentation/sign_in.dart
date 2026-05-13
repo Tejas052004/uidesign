@@ -11,16 +11,12 @@ import '../core/theme/app_colors.dart';
 import '../routes/app_pages.dart';
 
 class SignIn extends StatelessWidget {
-  SignIn({super.key});
-
-  // Controllers
-  final SignInController controller = Get.put(SignInController());
-
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  const SignIn({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final SignInController controller = Get.find<SignInController>();
+
     return Scaffold(
       body: SafeAreaWrapper(
         child: Column(
@@ -39,7 +35,7 @@ class SignIn extends StatelessWidget {
             // 📧 Email or Phone Field
             CommonTextField(
               hintText: "Email or Phone Number",
-              controller: emailController,
+              controller: controller.emailController,
             ),
 
             const SizedBox(height: 16),
@@ -48,7 +44,7 @@ class SignIn extends StatelessWidget {
             Obx(
               () => CommonTextField(
                 hintText: "Enter Your Password",
-                controller: passwordController,
+                controller: controller.passwordController,
                 obscureText: controller.isPasswordHidden.value,
                 suffixIcon: IconButton(
                   icon: Icon(
@@ -80,13 +76,15 @@ class SignIn extends StatelessWidget {
             const SizedBox(height: 20),
 
             // 🔘 Sign In Button
-            CustomButton(
-              text: "Sign in",
-              color: AppColors.primary,
-              onPressed: () {
-                Get.toNamed(Routes.sendVerification);
-              },
-            ),
+            Obx(() => controller.isLoading.value
+                ? const Center(child: CircularProgressIndicator())
+                : CustomButton(
+                    text: "Sign in",
+                    color: AppColors.primary,
+                    onPressed: () {
+                      controller.login();
+                    },
+                  )),
 
             const SizedBox(height: 20),
             Center(child: Image.asset("assets/images/Group-8.png")),

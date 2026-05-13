@@ -52,7 +52,7 @@ class ComplainScreen extends StatelessWidget {
                           imagePath: 'assets/images/Group-6476.png',
                           buttonText: "Back Home",
                           onPressed: () {
-                            Get.toNamed(Routes.mainScreen);
+                            Get.offAllNamed(Routes.mainScreen);
                           },
                         ),
                       );
