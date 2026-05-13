@@ -13,15 +13,15 @@ class MainScreen extends GetView<BottomNavController> {
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final List<Widget> screens = [
-    HomeScreen(),
-    FavouriteScreen(),
-    const WalletScreen(),
-    OfferScreen(),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final List<Widget> screens = [
+      HomeScreen(),
+      FavouriteScreen(),
+      const WalletScreen(),
+      OfferScreen(),
+    ];
+
     return Obx(() {
       return Scaffold(
         key: scaffoldKey,

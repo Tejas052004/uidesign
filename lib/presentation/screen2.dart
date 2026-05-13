@@ -33,7 +33,9 @@ class Screen2 extends StatelessWidget {
             const SizedBox(height: 20),
 
             // 🖼️ Main Image
-            Image.asset("assets/images/At-anytime.png", fit: BoxFit.contain),
+            Expanded(
+              child: Image.asset("assets/images/At-anytime.png", fit: BoxFit.contain),
+            ),
 
             const SizedBox(height: 30),
 

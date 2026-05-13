@@ -6,9 +6,8 @@ import '../controllers/bottom_nav_controller.dart';
 class HomeBinding extends Bindings {
   @override
   void dependencies() {
-    // Using put with permanent: false but ensuring it's scoped to the route properly
-    Get.put(BottomNavController());
-    Get.lazyPut<HomePageController>(() => HomePageController());
-    Get.lazyPut<MapController>(() => MapController());
+    Get.lazyPut<BottomNavController>(() => BottomNavController(), fenix: true);
+    Get.lazyPut<HomePageController>(() => HomePageController(), fenix: true);
+    Get.lazyPut<MapController>(() => MapController(), fenix: true);
   }
 }

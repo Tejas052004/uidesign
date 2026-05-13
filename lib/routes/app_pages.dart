@@ -133,7 +133,6 @@ class AppPages {
     GetPage(
       name: Routes.mainScreen,
       page: () => MainScreen(),
-      binding: HomeBinding(),
     ),
     GetPage(name: Routes.historyScreen, page: () => HistoryScreen()),
     GetPage(name: Routes.upcomingScreen, page: () => UpcomingScreen()),

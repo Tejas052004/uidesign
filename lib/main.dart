@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'bindings/initial_binding.dart';
 import 'routes/app_pages.dart';
 
 void main() {
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: Routes.splash,
       getPages: AppPages.pages,
-      // We rely on GetMaterialApp's internal navigator key
+      initialBinding: InitialBinding(),
     );
   }
 }

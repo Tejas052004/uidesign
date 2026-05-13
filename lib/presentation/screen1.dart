@@ -33,9 +33,11 @@ class Screen1 extends StatelessWidget {
             const SizedBox(height: 20),
 
             // 🖼️ Main Image
-            Image.asset(
-              "assets/images/screen1_image.png",
-              fit: BoxFit.contain,
+            Expanded(
+              child: Image.asset(
+                "assets/images/screen1_image.png",
+                fit: BoxFit.contain,
+              ),
             ),
 
             const SizedBox(height: 30),

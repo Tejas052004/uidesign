@@ -35,13 +35,16 @@ class CustomBottomNav extends StatelessWidget {
         int selected = controller.selectedIndex.value;
 
         return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _buildNavItem(Icons.home, "Home", 0, selected),
-            _buildNavItem(Icons.favorite_border, "Favourite", 1, selected),
-            _buildNavItem(Icons.wallet, "Wallet", 2, selected),
-            _buildNavItem(Icons.local_offer_outlined, "Offer", 3, selected),
-            _buildNavItem(Icons.menu, "Menu", 4, selected),
+            Expanded(child: _buildNavItem(Icons.home, "Home", 0, selected)),
+            Expanded(
+              child: _buildNavItem(Icons.favorite_border, "Favourite", 1, selected),
+            ),
+            Expanded(child: _buildNavItem(Icons.wallet, "Wallet", 2, selected)),
+            Expanded(
+              child: _buildNavItem(Icons.local_offer_outlined, "Offer", 3, selected),
+            ),
+            Expanded(child: _buildNavItem(Icons.menu, "Menu", 4, selected)),
           ],
         );
       }),
@@ -57,6 +60,7 @@ class CustomBottomNav extends StatelessWidget {
     bool isSelected = selected == index;
     return GestureDetector(
       onTap: () => onTap(index),
+      behavior: HitTestBehavior.opaque,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
